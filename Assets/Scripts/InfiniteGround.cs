@@ -3,6 +3,7 @@ public class InfiniteGround : MonoBehaviour
 {
     public GameObject groundPrefab;
     public GameObject obstaclePrefab;
+    public GameObject coinPrefab;
     public Transform player;
     public int startingPieces = 5;
     public float groundWidth = 20f;
@@ -46,6 +47,21 @@ public class InfiniteGround : MonoBehaviour
             Instantiate(
                 obstaclePrefab,
                 obstaclePosition,
+                Quaternion.identity
+            );
+        }
+        if (coinPrefab != null)
+        {
+            float coinX = nextSpawnX + Random.Range(8f, 15f);
+            float coinY = Random.Range(1.5f, 3f);
+            Vector3 coinPosition = new Vector3(
+                coinX,
+                coinY,
+                0f
+            );
+            Instantiate(
+                coinPrefab,
+                coinPosition,
                 Quaternion.identity
             );
         }
