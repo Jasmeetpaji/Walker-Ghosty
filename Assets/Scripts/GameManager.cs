@@ -6,6 +6,10 @@ public class GameManager : MonoBehaviour
     public bool gameOver = false;
     public int coins = 0;
     public int score = 0;
+    [Header("Speed Settings")]
+    public float startingSpeed = 5f;
+    public float speedIncrease = 1f;
+    public int scoreInterval = 250;
     public GameObject gameOverPanel;
     private float startX;
     private PlayerMovement player;
@@ -19,6 +23,7 @@ public class GameManager : MonoBehaviour
         if (player != null)
         {
             startX = player.transform.position.x;
+            player.moveSpeed = startingSpeed;
         }
         if (gameOverPanel != null)
         {
@@ -31,6 +36,9 @@ public class GameManager : MonoBehaviour
         {
             float distance = player.transform.position.x - startX;
             score = Mathf.Max(0, Mathf.FloorToInt(distance));
+            int speedLevel = score / scoreInterval;
+            player.moveSpeed = startingSpeed +
+                               (speedLevel * speedIncrease);
         }
     }
     public void AddCoin()
@@ -42,7 +50,10 @@ public class GameManager : MonoBehaviour
         if (gameOver)
             return;
         gameOver = true;
-        gameOverPanel.SetActive(true);
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(true);
+        }
         Time.timeScale = 0f;
     }
     public void RestartGame()
@@ -55,9 +66,7 @@ public class GameManager : MonoBehaviour
     public void QuitGame()
     {
         Time.timeScale = 1f;
-
         Application.Quit();
-
         Debug.Log("Quit Game");
     }
 }
