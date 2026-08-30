@@ -502,7 +502,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 6.8541665
+  orthographic size: 7.859375
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -878,7 +878,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InfiniteGround
   groundPrefab: {fileID: 9156080556753475350, guid: 49f6399ce1cf39340a1d3bbeded7e203, type: 3}
-  obstaclePrefab: {fileID: 2030050132762959921, guid: e942f3597192acd4080d7547c253342d, type: 3}
+  obstaclePrefabs:
+  - {fileID: 2030050132762959921, guid: e942f3597192acd4080d7547c253342d, type: 3}
+  - {fileID: 5441509896956851858, guid: d08e4fc8029393e4db28ce59bf5fc519, type: 3}
   coinPrefab: {fileID: 1588642454338568967, guid: f48e982de42efd5459eb91e168493f40, type: 3}
   player: {fileID: 1129360465}
   startingPieces: 5

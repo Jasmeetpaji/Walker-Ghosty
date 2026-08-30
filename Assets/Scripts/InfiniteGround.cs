@@ -2,7 +2,7 @@ using UnityEngine;
 public class InfiniteGround : MonoBehaviour
 {
     public GameObject groundPrefab;
-    public GameObject obstaclePrefab;
+    public GameObject[] obstaclePrefabs;
     public GameObject coinPrefab;
     public Transform player;
     public int startingPieces = 5;
@@ -36,7 +36,7 @@ public class InfiniteGround : MonoBehaviour
             groundPosition,
             Quaternion.identity
         );
-        if (obstaclePrefab != null)
+        if (obstaclePrefabs != null && obstaclePrefabs.Length > 0)
         {
             float obstacleX = nextSpawnX + Random.Range(3f, 7f);
             Vector3 obstaclePosition = new Vector3(
@@ -44,8 +44,12 @@ public class InfiniteGround : MonoBehaviour
                 0f,
                 0f
             );
+            GameObject randomObstacle =
+                obstaclePrefabs[
+                    Random.Range(0, obstaclePrefabs.Length)
+                ];
             Instantiate(
-                obstaclePrefab,
+                randomObstacle,
                 obstaclePosition,
                 Quaternion.identity
             );
