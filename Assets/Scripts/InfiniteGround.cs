@@ -4,10 +4,15 @@ public class InfiniteGround : MonoBehaviour
     public GameObject groundPrefab;
     public GameObject[] obstaclePrefabs;
     public GameObject coinPrefab;
+    public GameObject shieldPrefab;
     public Transform player;
     public int startingPieces = 5;
     public float groundWidth = 20f;
+    [Header("Shield Settings")]
+    public float shieldMinimumDistance = 300f;
+    public float shieldSpawnChance = 0.25f;
     private float nextSpawnX = 0f;
+    private float lastShieldX = -999f;
     void Start()
     {
         for (int i = 0; i < startingPieces; i++)
@@ -68,6 +73,28 @@ public class InfiniteGround : MonoBehaviour
                 coinPosition,
                 Quaternion.identity
             );
+        }
+        if (shieldPrefab != null)
+        {
+            float shieldX = nextSpawnX + Random.Range(10f, 18f);
+            if (shieldX - lastShieldX >= shieldMinimumDistance)
+            {
+                if (Random.value < shieldSpawnChance)
+                {
+                    float shieldY = Random.Range(1.5f, 3f);
+                    Vector3 shieldPosition = new Vector3(
+                        shieldX,
+                        shieldY,
+                        0f
+                    );
+                    Instantiate(
+                        shieldPrefab,
+                        shieldPosition,
+                        Quaternion.identity
+                    );
+                    lastShieldX = shieldX;
+                }
+            }
         }
         nextSpawnX += groundWidth;
     }
