@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
     public LayerMask groundLayer;
+    public AudioSource audioSource;
     private Rigidbody2D rb;
     private bool isGrounded;
     void Start()
@@ -30,6 +31,10 @@ public class PlayerMovement : MonoBehaviour
                 rb.linearVelocity.x,
                 jumpForce
             );
+            if (audioSource != null)
+            {
+                audioSource.Play();
+            }
         }
     }
 }

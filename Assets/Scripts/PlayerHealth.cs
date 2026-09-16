@@ -12,6 +12,8 @@ public class PlayerHealth : MonoBehaviour
     [Header("Shield")]
     public bool hasShield = false;
     public GameObject shieldVisual;
+    [Header("Sound")]
+    public AudioSource damageAudioSource;
     private bool isInvincible = false;
     private SpriteRenderer spriteRenderer;
     private Collider2D[] playerColliders;
@@ -36,6 +38,10 @@ public class PlayerHealth : MonoBehaviour
     {
         if (isInvincible)
             return;
+        if (damageAudioSource != null)
+        {
+            damageAudioSource.Play();
+        }
         if (hasShield)
         {
             hasShield = false;
@@ -140,20 +146,12 @@ public class PlayerHealth : MonoBehaviour
     void UpdateLivesUI()
     {
         if (currentLives == 3)
-        {
             livesText.text = "❤️❤️❤️";
-        }
         else if (currentLives == 2)
-        {
             livesText.text = "❤️❤️";
-        }
         else if (currentLives == 1)
-        {
             livesText.text = "❤️";
-        }
         else
-        {
             livesText.text = "";
-        }
     }
 }
