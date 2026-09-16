@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public float speedIncrease = 1f;
     public int scoreInterval = 250;
     public GameObject gameOverPanel;
+    [Header("Sound")]
+    public AudioSource gameOverAudioSource;
     private float startX;
     private PlayerMovement player;
     void Awake()
@@ -53,6 +55,10 @@ public class GameManager : MonoBehaviour
         if (gameOverPanel != null)
         {
             gameOverPanel.SetActive(true);
+        }
+        if (gameOverAudioSource != null)
+        {
+            gameOverAudioSource.Play();
         }
         Time.timeScale = 0f;
     }

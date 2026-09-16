@@ -14,6 +14,7 @@ public class PlayerHealth : MonoBehaviour
     public GameObject shieldVisual;
     [Header("Sound")]
     public AudioSource damageAudioSource;
+    public AudioSource shieldBreakAudioSource;
     private bool isInvincible = false;
     private SpriteRenderer spriteRenderer;
     private Collider2D[] playerColliders;
@@ -24,33 +25,52 @@ public class PlayerHealth : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerColliders = GetComponentsInChildren<Collider2D>();
         if (shieldVisual != null)
+        {
             shieldVisual.SetActive(false);
+        }
         UpdateLivesUI();
     }
     public void ActivateShield()
     {
         hasShield = true;
         if (shieldVisual != null)
+        {
             shieldVisual.SetActive(true);
+        }
         Debug.Log("Shield Activated!");
     }
     public void TakeDamage()
     {
         if (isInvincible)
             return;
-        if (damageAudioSource != null)
-        {
-            damageAudioSource.Play();
-        }
         if (hasShield)
         {
             hasShield = false;
+            InfiniteGround infiniteGround =
+                FindFirstObjectByType<InfiniteGround>();
+            if (infiniteGround != null)
+            {
+                infiniteGround.ShieldUsed();
+            }
+            if (shieldBreakAudioSource != null)
+            {
+                shieldBreakAudioSource.Play();
+            }
             if (shieldVisual != null)
+            {
                 StartCoroutine(ShieldBreakEffect());
+            }
             StartCoroutine(Invincibility());
             return;
         }
         currentLives--;
+        if (currentLives > 0)
+        {
+            if (damageAudioSource != null)
+            {
+                damageAudioSource.Play();
+            }
+        }
         UpdateLivesUI();
         if (currentLives <= 0)
         {
@@ -70,13 +90,15 @@ public class PlayerHealth : MonoBehaviour
             shieldVisual.SetActive(false);
             yield break;
         }
-        Vector3 originalScale = shieldVisual.transform.localScale;
+        Vector3 originalScale =
+            shieldVisual.transform.localScale;
         float timer = 0f;
         float effectDuration = 0.3f;
         while (timer < effectDuration)
         {
             timer += Time.deltaTime;
-            float progress = timer / effectDuration;
+            float progress =
+                timer / effectDuration;
             shieldVisual.transform.localScale =
                 Vector3.Lerp(
                     originalScale,
@@ -84,27 +106,33 @@ public class PlayerHealth : MonoBehaviour
                     progress
                 );
             Color color = shieldRenderer.color;
-            color.a = Mathf.Lerp(1f, 0f, progress);
+            color.a =
+                Mathf.Lerp(1f, 0f, progress);
             shieldRenderer.color = color;
             yield return null;
         }
-        shieldVisual.transform.localScale = originalScale;
-        Color resetColor = shieldRenderer.color;
+        shieldVisual.transform.localScale =
+            originalScale;
+        Color resetColor =
+            shieldRenderer.color;
         resetColor.a = 1f;
-        shieldRenderer.color = resetColor;
+        shieldRenderer.color =
+            resetColor;
         shieldVisual.SetActive(false);
     }
     IEnumerator Invincibility()
     {
         isInvincible = true;
-        Obstacle[] obstacles = FindObjectsOfType<Obstacle>();
+        Obstacle[] obstacles =
+            FindObjectsOfType<Obstacle>();
         foreach (Obstacle obstacle in obstacles)
         {
             Collider2D obstacleCollider =
                 obstacle.GetComponent<Collider2D>();
             if (obstacleCollider != null)
             {
-                foreach (Collider2D playerCollider in playerColliders)
+                foreach (Collider2D playerCollider
+                         in playerColliders)
                 {
                     Physics2D.IgnoreCollision(
                         playerCollider,
@@ -118,20 +146,26 @@ public class PlayerHealth : MonoBehaviour
         while (timer < invincibilityDuration)
         {
             spriteRenderer.enabled = false;
-            yield return new WaitForSeconds(blinkSpeed);
+            yield return new WaitForSeconds(
+                blinkSpeed
+            );
             spriteRenderer.enabled = true;
-            yield return new WaitForSeconds(blinkSpeed);
+            yield return new WaitForSeconds(
+                blinkSpeed
+            );
             timer += blinkSpeed * 2f;
         }
         spriteRenderer.enabled = true;
-        obstacles = FindObjectsOfType<Obstacle>();
+        obstacles =
+            FindObjectsOfType<Obstacle>();
         foreach (Obstacle obstacle in obstacles)
         {
             Collider2D obstacleCollider =
                 obstacle.GetComponent<Collider2D>();
             if (obstacleCollider != null)
             {
-                foreach (Collider2D playerCollider in playerColliders)
+                foreach (Collider2D playerCollider
+                         in playerColliders)
                 {
                     Physics2D.IgnoreCollision(
                         playerCollider,
@@ -145,13 +179,23 @@ public class PlayerHealth : MonoBehaviour
     }
     void UpdateLivesUI()
     {
+        if (livesText == null)
+            return;
         if (currentLives == 3)
+        {
             livesText.text = "❤️❤️❤️";
+        }
         else if (currentLives == 2)
+        {
             livesText.text = "❤️❤️";
+        }
         else if (currentLives == 1)
+        {
             livesText.text = "❤️";
+        }
         else
+        {
             livesText.text = "";
+        }
     }
 }
