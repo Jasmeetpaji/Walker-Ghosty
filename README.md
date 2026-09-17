@@ -23,12 +23,12 @@ about panel
 retro pixel art style
 
   TECH STACK:
-  Unity
-  C#
-  VS Code
-  Unity and 3d physics
-  TextMeshPro
-  git and github
+  1. Unity
+  2. C#
+  3. VS Code
+  4. Unity and 3d physics
+  5. TextMeshPro
+  6. git and github
 
    CHALLENGES THAT I FACED WHILE MAKING THE GAME:  
    the biggest challenge that i faced was working with c# and understanding every single line of code fixing the errors that were made by me and making the 
