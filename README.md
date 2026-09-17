@@ -6,21 +6,21 @@
                 the difficulty increases when the player achieves higher scores. this game also has a day and night cycle!
 
 FEATURES OF THE GAME:
-Automatic running
-jumping with space
-collecting coins
-distance based score system
-increase in the speed of the player as the score increases
-3 life health system
-shield power up to protect and save your lives
-shield break effect when the player hits an obstacle while having a shield
-temporary invincibility when getting hit by an obstacle
-different types of obstacles
-day and night cycle
-infinite world
-Main menu
-about panel
-retro pixel art style
+1. Automatic running
+2. jumping with space
+3. collecting coins
+4. distance based score system
+5. increase in the speed of the player as the score increases
+6. 3 life health system
+7. shield power up to protect and save your lives
+8. shield break effect when the player hits an obstacle while having a shield
+9. temporary invincibility when getting hit by an obstacle
+10. different types of obstacles
+11. day and night cycle
+12. infinite world
+13. Main menu
+14. about panel
+15. retro pixel art style
 
   TECH STACK:
   1. Unity
@@ -35,10 +35,10 @@ retro pixel art style
    ground spawn infinitely.
 
 CONTROLS:
-Jump----space
-move forward------automatic
-collect coins------ run through the coins
-using shield------ run through them to collect them and they get used automatically when you hit an obstacle.
+1. Jump----space
+2. move forward------automatic
+3. collect coins------ run through the coins
+4. using shield------ run through them to collect them and they get used automatically when you hit an obstacle.
 
   HOW TO RUN LOCALLY:
 Walker Jackson the game Itch.io Link: https://jasmeetsingh.itch.io/walker-jackson
