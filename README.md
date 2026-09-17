@@ -47,7 +47,6 @@ Walker Jackson the game Itch.io Link: https://jasmeetsingh.itch.io/walker-jackso
 completed version 1 of Walker Jackson The Game.
 
 SCREENSHOTS OF THE GAME:
-<img width="1191" height="659" alt="Desktop Screenshot 2026 09 16 - 22 59 31 42" src="https://github.com/user-attachments/assets/b92665b4-255a-4c16-8627-706a83b7f576" />
 <img width="1920" height="1080" alt="Desktop Screenshot 2026 09 17 - 17 41 13 32" src="https://github.com/user-attachments/assets/c2ae36ec-ed09-47d4-8428-5af75d4d7996" />
 <img width="1920" height="1080" alt="Desktop Screenshot 2026 09 17 - 17 41 39 32" src="https://github.com/user-attachments/assets/1e425ca6-97c9-4a02-bc12-81ee8cf17a5d" />
 
